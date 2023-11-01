@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700&family=Poppins:wght@400;500;600;700&family=Quicksand&family=Roboto&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #020C09;
+    color: #fff;
+}
+
+.section_single {
+    width: 100%;
+    height: auto;
+}
+
+.section_single .bar_top {
+    width: 100%;
+    height: 7px;
+    background-color: #4ADEB2;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.section_single .area_section {
+    margin: auto;
+    max-width: 635px;
+    width: 100%;
+    padding: 100px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.section_single .area_section .title h1 {
+    font-weight: 600;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.section_single .area_section .area_field {
+    width: inherit;
+    padding-bottom: 41px;
+}
+
+.section_single .area_section .area_field form .row_input_search {
+    position: relative;
+}
+
+.section_single .area_section .area_field form .row_input_search input[type="text"] {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    border-radius: 50px;
+    color: #333;
+    border: 0;
+    outline: 0;
+    font-size: 17px;
+}
+
+.section_single .area_section .area_field form .row_input_search button {
+    position: absolute;
+    right: 0;
+    color: #fff;
+    background-color: #4ADEB2;
+    border-radius: 0px 50px 50px 0px;
+    border: 0;
+    font-size: 20px;
+    padding: 10px 30px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.section_single .area_section .area_result {
+    width: 100%;
+}
+
+.section_single .area_section .area_result .item_result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: .7s;
+}
+
+.section_single .area_section .area_result .item_result:hover::after {
+    content: "Copiar";
+    background-color: #4ADEB2;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: -20px;
+    right: 0;
+}
+
+.section_single .area_section .area_result .item_result .left span {
+    display: block;
+    font-size: 17px;
+    color: #ccc;
+}
+
+.section_single .area_section .area_result .item_result .left span strong {
+    color: #fff;
+}
+
+.section_single .area_section .area_result .item_result .right i {
+    font-size: 25px;
+    transition: .5s;
+}
+
+@media (max-width: 650px) {
+    .section_single .area_section {
+        padding: 100px 20px;
+    }
+    .section_single .area_section .area_result .item_result .left span {
+        width: 300px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 375px) {
+    .section_single .area_section .area_result .item_result .left span {
+        width: 250px;
+    }
+}

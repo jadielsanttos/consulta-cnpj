@@ -13,8 +13,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #020C09;
-    color: #fff;
 }
 
 .section_single {
@@ -66,6 +64,8 @@ html, body {
     border: 0;
     outline: 0;
     font-size: 17px;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+    border: 1px solid #ccc;
 }
 
 .section_single .area_section .area_field form .row_input_search button {
@@ -111,11 +111,11 @@ html, body {
 .section_single .area_section .area_result .item_result .left span {
     display: block;
     font-size: 17px;
-    color: #ccc;
+    color: #333;
 }
 
 .section_single .area_section .area_result .item_result .left span strong {
-    color: #fff;
+    color: #000;
 }
 
 .section_single .area_section .area_result .item_result .right i {
@@ -138,5 +138,11 @@ html, body {
 @media (max-width: 375px) {
     .section_single .area_section .area_result .item_result .left span {
         width: 250px;
+    }
+}
+
+@media (max-width: 320px) {
+    .section_single .area_section .title h1 {
+        font-size: 32px;
     }
 }

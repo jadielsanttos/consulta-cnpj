@@ -29,7 +29,7 @@ if(!empty($cnpjValue)) {
         <div class="bar_top"></div>
         <div class="area_section">
             <div class="title">
-                <h1>Consulta CNPJ</h1>
+                <h1>Busca CNPJ</h1>
             </div>
             <div class="area_field">
                 <form method="POST">

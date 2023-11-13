@@ -15,13 +15,13 @@ class Speedio {
      * @param string
      * @return array
      */
-    public function consultarCnpj($cnpj) {
+    public static function consultarCnpj($cnpj) {
 
         // Remove os caracteres especiais
         $cnpj = preg_replace('/\D/', '', $cnpj);
 
         $endPoint = self::BASE_URL.'/buscarcnpj?cnpj='.$cnpj;
-        return $this->get($endPoint);
+        return self::get($endPoint);
     }
 
     /**
@@ -29,7 +29,7 @@ class Speedio {
      * @param string
      * @return array
      */
-    public function get($endPoint) {
+    public static function get($endPoint) {
         // inicia o curl
         $request = curl_init();
 

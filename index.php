@@ -4,13 +4,11 @@ require __DIR__.'/vendor/autoload.php';
 
 use App\WebService\Speedio;
 
-$objSpeedio = new Speedio();
-
 $cnpjValue = filter_input(INPUT_POST, 'cnpj');
 
 // Verifica se o campo não está vazio
 if(!empty($cnpjValue)) {
-    $resultado = $objSpeedio->consultarCnpj($cnpjValue);
+    $resultado = Speedio::consultarCnpj($cnpjValue);
 }
 
 ?>

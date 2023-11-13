@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700&family=Poppins:wght@400;500;600;700&family=Quicksand&family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+}
+
+.section_login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.section_login .title h1 {
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section_login .area_form {
+    max-width: 500px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.section_login .area_form .msg_error {
+    background-color: rgb(224, 143, 143);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.section_login .area_form .row_input label, input {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.section_login .area_form .row_input input {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    outline: 0;
+    background-color: #eee;
+}
+
+.section_login .area_form .row_input_submit input[type="submit"] {
+    cursor: pointer;
+    width: 124px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    font-size: 16px;
+    transition: .3s;
+}
+
+.section_login .area_form .row_input_submit input[type="submit"]:hover {
+    background-color: #bbb;
+}

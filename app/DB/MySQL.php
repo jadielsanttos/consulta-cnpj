@@ -35,7 +35,7 @@ class MySQL {
 
      /**
       * Objeto DB
-      * @var objeto
+      * @var object
       */
      private object $db;
 

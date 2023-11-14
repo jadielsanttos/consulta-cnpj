@@ -23,7 +23,7 @@ class Usuario {
         $consulta = "SELECT * FROM ".self::TABLE." WHERE email = :email AND senha = :senha";
         $stmt = $this->MySql->getDB()->prepare($consulta);
         $stmt->bindValue(':email', $email);
-        $stmt->bindValue(':senha', $senha);
+        $stmt->bindValue(':senha', md5($senha));
         $stmt->execute();
 
         if($stmt->rowCount() > 0) {
@@ -31,7 +31,7 @@ class Usuario {
 
             $_SESSION['usuario_logado'] = $dataUser['id'];
 
-            header('location: admin/index.php');
+            header('location: index.php');
             exit;
         }else {
            $_SESSION['error'] = 'Dados não encontrados!';

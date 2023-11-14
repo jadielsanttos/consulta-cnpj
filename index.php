@@ -3,12 +3,18 @@
 require __DIR__.'/vendor/autoload.php';
 
 use App\WebService\Speedio;
+use App\Consultas\Consulta;
 
+// Intância da classe de consulta
+$objConsulta = new Consulta();
+
+// Pegando CNPJ via POST
 $cnpjValue = filter_input(INPUT_POST, 'cnpj');
 
 // Verifica se o campo não está vazio
 if(!empty($cnpjValue)) {
     $resultado = Speedio::consultarCnpj($cnpjValue);
+    $objConsulta->cadastrarConsulta($cnpjValue);
 }
 
 ?>

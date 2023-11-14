@@ -13,11 +13,13 @@ html, body {
     background-color: #eee;
 }
 
+/* Login */
 .section_login {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
 }
 
 .section_login .title h1 {
@@ -71,4 +73,82 @@ html, body {
 
 .section_login .area_form .row_input_submit input[type="submit"]:hover {
     background-color: #bbb;
+}
+
+/* Painel */
+.section_container {
+    display: flex;
+}
+
+.section_container aside {
+    width: 112px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
+}
+
+.section_container aside .area_top a, .area_bottom a {
+    text-decoration: none;
+    color: #000;
+    font-size: 25px;
+}
+
+.section_container .area_main_admin {
+    width: 100%;
+    height: 100vh;
+    margin-left: 112px;
+    padding: 50px 20px;
+}
+
+.section_container .area_main_admin .area_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section_container .area_main_admin .area_title .left_side h1 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.section_container .area_main_admin .area_title .right_side select {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 17px;
+    border: 1px solid #ccc;
+    outline: 0;
+}
+
+.section_container .area_main_admin .area_table {
+    margin-top: 40px;
+}
+
+.section_container .area_main_admin .area_table table {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.section_container .area_main_admin .area_table table thead th {
+    width: calc(100% / 5);
+    font-weight: 400;
+    padding: 10px 0;
+}
+
+@media (max-width: 425px) {
+    .section_login {
+        padding: 40px 20px;
+    }
+    .section_login .area_form {
+        padding: 20px;
+    }
 }

@@ -12,10 +12,10 @@ if(isset($_POST['Entrar'])) {
 
     if($email && $senha) {
         $objUsuario->login($email, $senha);
-    }else {
-        header('location: login.php');
-        exit;
     }
+
+    header('location: login.php');
+    exit;
 
 }
 

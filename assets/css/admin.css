@@ -134,14 +134,34 @@ html, body {
 .section_container .area_main_admin .area_table table {
     width: 100%;
     background-color: #fff;
+    border-collapse: collapse;
+}
+
+.section_container .area_main_admin .area_table table thead th, 
+.section_container .area_main_admin .area_table table tbody tr td {
     border: 1px solid #ccc;
-    border-radius: 10px;
+}
+
+.section_container .area_main_admin .area_table table thead {
+    border-radius: 10px 10px 0 0;
+}
+
+.section_container .area_main_admin .area_table table tbody {
+    border-radius: 0 0 10px 10px;
 }
 
 .section_container .area_main_admin .area_table table thead th {
-    width: calc(100% / 5);
+    width: calc(100% / 4);
     font-weight: 400;
     padding: 10px 0;
+}
+
+.section_container .area_main_admin .area_table table tbody tr td {
+    width: calc(100% / 4);
+    font-size: 15px;
+    color: #333;
+    text-align: center;
+    padding: 5px 0;
 }
 
 @media (max-width: 425px) {

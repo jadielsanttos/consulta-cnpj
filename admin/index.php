@@ -6,7 +6,8 @@ use App\Usuarios\Usuario;
 use App\Consultas\Consulta;
 
 $objUsuario = new Usuario();
-$objConsulta = new Consulta();
+$consulta = new Consulta();
+$listaDeConsultas = $consulta->listarConsultas();
 
 if(!isset($_SESSION['usuario_logado']) && empty($_SESSION['usuario_logado'])) {
     header('location: login.php');
@@ -52,9 +53,14 @@ if(!isset($_SESSION['usuario_logado']) && empty($_SESSION['usuario_logado'])) {
                         <th>IP</th>
                     </thead>
                     <tbody>
+                        <?php foreach($listaDeConsultas as $item): ?>
                         <tr>
-                            <td></td>
+                            <td><?=$item['id'];?></td>
+                            <td><?=$item['cnpj'];?></td>
+                            <td><?=$item['data_consulta'];?></td>
+                            <td><?=$item['ip'];?></td>
                         </tr>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>

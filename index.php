@@ -5,7 +5,7 @@ require __DIR__.'/vendor/autoload.php';
 use App\WebService\Speedio;
 use App\Consultas\Consulta;
 
-// Intância da classe de consulta
+// Instância da classe de consulta
 $objConsulta = new Consulta();
 
 // Pegando CNPJ via POST
@@ -14,7 +14,11 @@ $cnpjValue = filter_input(INPUT_POST, 'cnpj');
 // Verifica se o campo não está vazio
 if(!empty($cnpjValue)) {
     $resultado = Speedio::consultarCnpj($cnpjValue);
-    $objConsulta->cadastrarConsulta($cnpjValue);
+    
+    // Evitando registros desnecessários
+    if(isset($resultado) && !isset($resultado['error']) && !isset($resultado['detail'])) {
+        $objConsulta->cadastrarConsulta($cnpjValue);
+    }
 }
 
 ?>
@@ -43,6 +47,7 @@ if(!empty($cnpjValue)) {
                     </div>
                 </form>
             </div>
+            <div class="area_loading"></div>
             <?php 
                 if(isset($resultado) && !isset($resultado['error']) && !isset($resultado['detail'])) {
                     require 'partials/resultado.php';

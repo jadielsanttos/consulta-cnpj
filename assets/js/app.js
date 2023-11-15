@@ -1,11 +1,15 @@
 const inputCnpj = document.getElementById('input_cnpj')
 const btnSend = document.getElementById('btn_send')
+const areaResult = document.querySelector('.section_single .area_section .area_result')
 const itemsResultadoCnpj = document.querySelectorAll('.section_single .area_section .area_result .item_result')
+const areaLoading = document.querySelector('.area_loading')
 
 btnSend.addEventListener('click', (e) => {
     if(inputCnpj.value.length > 18 || inputCnpj.value.length < 18) {
         alert('CNPJ inválido')
         e.preventDefault()
+    }else {
+        controlaLoading()
     }
 })
 
@@ -31,6 +35,12 @@ function verificaAreaResultado() {
 
     if(quantidadeItemsResultado == 6) {
         document.querySelector('.section_single .area_section .title h1').style.marginTop = '200px'
+    }
+}
+
+function controlaLoading() {
+    if(areaResult == null) {
+        areaLoading.innerHTML = 'Carregando...'
     }
 }
 

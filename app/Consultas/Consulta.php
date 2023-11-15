@@ -28,19 +28,12 @@ class Consulta {
     public function listarConsultas() {
         $array = [];
 
-        $query = "SELECT * FROM ".self::TABLE."";
+        $query = "SELECT * FROM ".self::TABLE." ORDER BY id DESC";
         $stmt = $this->MySQL->getDB()->prepare($query);
         $stmt->execute();
 
         if($stmt->rowCount() > 0) {
-            $dadosDaConsulta = $stmt->fetchAll();
-
-            foreach($dadosDaConsulta as $item) {
-                $array[] = $item['id'];
-                $array[] = $item['cnpj'];
-                $array[] = $item['data_consulta'];
-                $array[] = $item['ip'];
-            }
+            $array = $stmt->fetchAll();
         }
 
         return $array;

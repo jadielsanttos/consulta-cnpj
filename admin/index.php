@@ -59,6 +59,7 @@ if(!isset($_SESSION['usuario_logado']) && empty($_SESSION['usuario_logado'])) {
                             <th>CNPJ</th>
                             <th>Data da consulta</th>
                             <th>IP</th>
+                            <th>Ações</th>
                         </thead>
                         <tbody>
                             <?php foreach($listaDeConsultas as $item): ?>
@@ -67,6 +68,7 @@ if(!isset($_SESSION['usuario_logado']) && empty($_SESSION['usuario_logado'])) {
                                     <td><?=$item['cnpj'];?></td>
                                     <td><?=$item['data_consulta'];?></td>
                                     <td><?=$item['ip'];?></td>
+                                    <td><a href="deletar_consulta.php?id=<?=$item['id'];?>" onclick="return confirm('Tem certeza que deseja excluir?')">Deletar</a></td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>

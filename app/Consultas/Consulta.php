@@ -101,5 +101,16 @@ class Consulta {
 
         return false;
     }
+
+    /**
+     * Método responsável por deletar uma consulta do banco de dados
+     * @param integer (id)
+     */
+    public function deletarConsulta($id) {
+        $query = "DELETE FROM ".self::TABLE." WHERE id = :id";
+        $stmt = $this->MySQL->getDB()->prepare($query);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+    }
     
 }

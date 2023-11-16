@@ -15,7 +15,7 @@ $cnpjValue = filter_input(INPUT_POST, 'cnpj');
 $dataConsulta = date('Y-m-d');
 
 // Pegando IP
-$ip = '192.168.63.116';
+$ip = $_SERVER['REMOTE_ADDR'];
 
 // Verifica se o campo não está vazio
 if(!empty($cnpjValue)) {

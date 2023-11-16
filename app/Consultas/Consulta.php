@@ -28,12 +28,32 @@ class Consulta {
     public function listarConsultas() {
         $array = [];
 
-        $query = "SELECT * FROM ".self::TABLE." ORDER BY id DESC";
+        $perPage = 7;
+        $page = intval(filter_input(INPUT_GET, 'p'));
+
+        if($page < 1) {
+            $page = 1;
+        }
+
+        $offSet = ($page - 1) * $perPage;
+
+        // Puxando todas as consultas ordenando via ID de forma decrescente
+        $query = "SELECT * FROM ".self::TABLE." ORDER BY id DESC LIMIT $offSet,$perPage";
         $stmt = $this->MySQL->getDB()->prepare($query);
         $stmt->execute();
 
         if($stmt->rowCount() > 0) {
-            $array = $stmt->fetchAll();
+            $array['info'] = $stmt->fetchAll();
+        }
+
+        // Pegando a contagem total de registros
+        $query = "SELECT COUNT(*) AS c FROM ".self::TABLE."";
+        $stmt = $this->MySQL->getDB()->prepare($query);
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0) {
+            $data = $stmt->fetch();
+            $array['pages'] = ceil($data['c'] / $perPage);
         }
 
         return $array;

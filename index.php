@@ -47,7 +47,30 @@ if(!empty($cnpjValue)) {
                     </div>
                 </form>
             </div>
-            <div class="area_loading"></div>
+            <div class="area_termos_de_uso">
+                <div class="left_side">
+                    <input type="checkbox" checked>
+                </div>
+                <div class="right_side">
+                    <span>Li e concordo com os <strong>termos de uso</strong></span>
+                </div>
+            </div>
+            <div class="area_modal_termos_de_uso">
+                <div class="modal">
+                    <div class="btn_close_modal"><i class="fa-solid fa-xmark"></i></div>
+                    <div class="content_modal">
+                        <p>
+                            O uso inapropriado dos dados referente aos CNPJ's, está ligado diretamente com a índole do usuário, 
+                            o projeto foi criado com o intuito de ser uma ferramenta de pesquisa e investigação digital afim de verificar a procedência de um CNPJ e evitar tais tipos de golpes.
+                            Por questões de segurança e assessibilidade, cada usuário pode fazer até 2 consultas por dia.
+                        </p>
+                        <p id="single_paragraph">ok, li e concordo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="area_loading">
+                <div class="loader"></div>
+            </div>
             <?php 
                 if(isset($resultado) && !isset($resultado['error']) && !isset($resultado['detail'])) {
                     require 'partials/resultado.php';

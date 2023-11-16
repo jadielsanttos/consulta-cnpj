@@ -13,6 +13,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #0a020a;
 }
 
 .section_single {
@@ -23,7 +24,7 @@ html, body {
 .section_single .bar_top {
     width: 100%;
     height: 7px;
-    background-color: #4ADEB2;
+    background-color: #ccc;
     position: absolute;
     top: 0;
     left: 0;
@@ -44,6 +45,7 @@ html, body {
     font-weight: 600;
     font-size: 40px;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .section_single .area_section .area_field {
@@ -71,8 +73,8 @@ html, body {
 .section_single .area_section .area_field form .row_input_search button {
     position: absolute;
     right: 0;
-    color: #fff;
-    background-color: #4ADEB2;
+    color: #000;
+    background-color: #ccc;
     border-radius: 0px 50px 50px 0px;
     border: 0;
     font-size: 20px;
@@ -81,8 +83,92 @@ html, body {
     cursor: pointer;
 }
 
+.section_single .area_section .area_termos_de_uso {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section_single .area_section .area_termos_de_uso .right_side span {
+    color: #fff;
+    font-size: 15px;
+}
+
+.section_single .area_section .area_termos_de_uso .right_side span strong {
+    font-weight: 600;
+    color: #ccc;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.section_single .area_section .area_modal_termos_de_uso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.section_single .area_section .area_modal_termos_de_uso .modal {
+    max-width: 500px;
+    width: 100%;
+    background-color: #fff;
+    position: relative;
+    border-radius: 10px;
+}
+
+.section_single .area_section .area_modal_termos_de_uso .modal .btn_close_modal {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ccc;
+    padding: 3px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.section_single .area_section .area_modal_termos_de_uso .modal .content_modal {
+    padding: 40px 20px;
+    color: #333;
+    font-size: 16px;
+}
+
+.section_single .area_section .area_modal_termos_de_uso .modal .content_modal #single_paragraph {
+    color: #444;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.section_single .area_section .area_loading {
+    color: #fff;
+    display: none;
+    padding-bottom: 20px;
+}
+
+.section_single .area_section .area_loading .loader {
+    width: 30px;
+    height: 30px;
+    border: 4px solid #fff;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: is-rotating 1s infinite;
+}
+
 .section_single .area_section .area_result {
     width: 100%;
+}
+
+.section_single .area_section .area_resultado_error {
+    color: #fff;
 }
 
 .section_single .area_section .area_result .item_result {
@@ -98,8 +184,8 @@ html, body {
 
 .section_single .area_section .area_result .item_result:hover::after {
     content: "Copiar";
-    background-color: #4ADEB2;
-    color: #fff;
+    background-color: #ccc;
+    color: #000;
     font-size: 12px;
     padding: 5px 10px;
     border-radius: 5px;
@@ -111,16 +197,23 @@ html, body {
 .section_single .area_section .area_result .item_result .left span {
     display: block;
     font-size: 17px;
-    color: #333;
+    color: #ccc;
 }
 
 .section_single .area_section .area_result .item_result .left span strong {
-    color: #000;
+    color: #fff;
 }
 
 .section_single .area_section .area_result .item_result .right i {
     font-size: 25px;
     transition: .5s;
+    color: #ccc;
+}
+
+@keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
 }
 
 @media (max-width: 650px) {
@@ -135,7 +228,23 @@ html, body {
     }
 }
 
+@media (max-width: 530px) {
+    .section_single .area_section .area_modal_termos_de_uso {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 425px) {
+    .section_single .area_section .area_resultado_error h3 {
+        font-size: 15px;
+        text-align: center;
+    }
+}
+
 @media (max-width: 375px) {
+    .section_single .area_section .area_termos_de_uso .right_side span {
+        font-size: 12px;
+    }
     .section_single .area_section .area_result .item_result .left span {
         width: 250px;
     }
@@ -144,5 +253,8 @@ html, body {
 @media (max-width: 320px) {
     .section_single .area_section .title h1 {
         font-size: 32px;
+    }
+    .section_single .area_section .area_field form .row_input_search button {
+        padding: 10px 20px;
     }
 }

@@ -7,7 +7,15 @@ use App\Consultas\Consulta;
 
 $objUsuario = new Usuario();
 $consulta = new Consulta();
-$listaDeConsultas = $consulta->listarConsultas();
+$data = $consulta->listarConsultas();
+
+$listaDeConsultas = $data['info'];
+$pages = $data['pages'];
+$currentPage = filter_input(INPUT_GET, 'p');
+
+if(!isset($currentPage)) {
+    $currentPage = 1;
+}
 
 if(!isset($_SESSION['usuario_logado']) && empty($_SESSION['usuario_logado'])) {
     header('location: login.php');
@@ -63,6 +71,11 @@ if(!isset($_SESSION['usuario_logado']) && empty($_SESSION['usuario_logado'])) {
                         <?php endforeach ?>
                     </tbody>
                 </table>
+                <div class="area_pagination">
+                    <?php for($i=0;$i<$pages;$i++): ?>
+                        <div class="item_pagination"><a class="<?=($i+1==$currentPage)?'active':''?>" href="index.php?p=<?=$i+1?>"><?=$i+1;?></a></div>
+                    <?php endfor ?>
+                </div>
             </div>
         </main>
     </section>

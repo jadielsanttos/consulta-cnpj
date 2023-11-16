@@ -28,17 +28,17 @@ class Consulta {
     public function listarConsultas() {
         $array = [];
 
-        $perPage = 7;
+        $itemsPerPage = 7;
         $page = intval(filter_input(INPUT_GET, 'p'));
 
         if($page < 1) {
             $page = 1;
         }
 
-        $offSet = ($page - 1) * $perPage;
+        $offSet = ($page - 1) * $itemsPerPage;
 
-        // Puxando todas as consultas ordenando via ID de forma decrescente
-        $query = "SELECT * FROM ".self::TABLE." ORDER BY id DESC LIMIT $offSet,$perPage";
+        // Puxando todas as consultas e ordenando pelo ID de forma decrescente
+        $query = "SELECT * FROM ".self::TABLE." ORDER BY id DESC LIMIT $offSet,$itemsPerPage";
         $stmt = $this->MySQL->getDB()->prepare($query);
         $stmt->execute();
 
@@ -46,33 +46,60 @@ class Consulta {
             $array['info'] = $stmt->fetchAll();
         }
 
-        // Pegando a contagem total de registros
+        // Pegando a contagem total de registros para gerar as páginas (paginação)
+        $array['pages'] = $this->quantidadeDeConsultas($itemsPerPage);
+
+        return $array;
+    }
+
+    /**
+     * Método responsável por pegar a quantidade total de consultas
+     * @param integer (Items por página)
+     * @return integer (Quantidade de páginas)
+     */
+    public function quantidadeDeConsultas($itemsPerPage) {
+        $totalPages = 0;
+
         $query = "SELECT COUNT(*) AS c FROM ".self::TABLE."";
         $stmt = $this->MySQL->getDB()->prepare($query);
         $stmt->execute();
 
         if($stmt->rowCount() > 0) {
             $data = $stmt->fetch();
-            $array['pages'] = ceil($data['c'] / $perPage);
+            $totalPages = ceil($data['c'] / $itemsPerPage);
         }
 
-        return $array;
+        return $totalPages;
     }
 
     /**
      * Método responsável por cadastrar as consultas
      * @param string (cnpj)
      */
-    public function cadastrarConsulta($cnpj) {
-        // Data da consulta
-        $dataConsulta = date('Y-m-d');
-
-        // Pegando IP
-        $ip = '192.168.63.116';
-
+    public function cadastrarConsulta($cnpj, $dataConsulta, $ip) {
         $query = "INSERT INTO ".self::TABLE." VALUES (null,?,?,?)";
         $stmt = $this->MySQL->getDB()->prepare($query);
         $stmt->execute(array($cnpj,$dataConsulta,$ip));
+    }
+
+    /**
+     * Método responsável por limitar a quantidade de consultas por usuário
+     * @param string (ip)
+     * @param string (date)
+     * @return boolean
+     */
+    public function findByIpAndDate($dataConsulta, $ip) {
+        $query = "SELECT * FROM ".self::TABLE." WHERE data_consulta = :data_consulta AND ip = :ip";
+        $stmt = $this->MySQL->getDB()->prepare($query);
+        $stmt->bindValue(':data_consulta', $dataConsulta);
+        $stmt->bindValue(':ip', $ip);
+        $stmt->execute();
+
+        if($stmt->rowCount() >= 2) {
+            return true;
+        }
+
+        return false;
     }
     
 }

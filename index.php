@@ -11,13 +11,27 @@ $objConsulta = new Consulta();
 // Pegando CNPJ via POST
 $cnpjValue = filter_input(INPUT_POST, 'cnpj');
 
+// Pegando DATA
+$dataConsulta = date('Y-m-d');
+
+// Pegando IP
+$ip = '192.168.63.116';
+
 // Verifica se o campo não está vazio
 if(!empty($cnpjValue)) {
     $resultado = Speedio::consultarCnpj($cnpjValue);
     
     // Evitando registros desnecessários
-    if(isset($resultado) && !isset($resultado['error']) && !isset($resultado['detail'])) {
-        $objConsulta->cadastrarConsulta($cnpjValue);
+    if(isset($resultado) && (!isset($resultado['error']) || !isset($resultado['detail']))) {
+
+        // Validando limite de requests por usuario
+        if($objConsulta->findByIpAndDate($dataConsulta, $ip)) {
+            echo '<script>alert("Você atingiu seu limite máximo de consultas no dia")</script>';
+            echo '<script>window.location.href = "index.php"</script>';
+        }else {
+            $objConsulta->cadastrarConsulta($cnpjValue, $dataConsulta, $ip);
+        }
+        
     }
 }
 
@@ -62,7 +76,7 @@ if(!empty($cnpjValue)) {
                         <p>
                             O uso inapropriado dos dados referente aos CNPJ's, está ligado diretamente com a índole do usuário, 
                             o projeto foi criado com o intuito de ser uma ferramenta de pesquisa e investigação digital afim de verificar a procedência de um CNPJ e evitar tais tipos de golpes.
-                            Por questões de segurança e assessibilidade, cada usuário pode fazer até 2 consultas por dia.
+                            Por questões de segurança e acessibilidade, cada usuário pode fazer até 2 consultas por dia.
                         </p>
                         <p id="single_paragraph">ok, li e concordo</p>
                     </div>
@@ -85,4 +99,3 @@ if(!empty($cnpjValue)) {
     <script src="https://kit.fontawesome.com/e3dc242dae.js" crossorigin="anonymous"></script>
 </body>
 </html>
-

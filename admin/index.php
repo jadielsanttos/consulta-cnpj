@@ -2,10 +2,8 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-use App\Usuarios\Usuario;
 use App\Consultas\Consulta;
 
-$objUsuario = new Usuario();
 $consulta = new Consulta();
 $data = $consulta->listarConsultas();
 

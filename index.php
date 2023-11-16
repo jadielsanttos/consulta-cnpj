@@ -20,18 +20,17 @@ $ip = '192.168.63.116';
 // Verifica se o campo não está vazio
 if(!empty($cnpjValue)) {
     $resultado = Speedio::consultarCnpj($cnpjValue);
+
+    // Validando limite de requests por usuario
+    if($objConsulta->findByIpAndDate($dataConsulta, $ip)) {
+        echo '<script>alert("Você atingiu seu limite de consultas no dia")</script>';
+        echo '<script>window.location.href = "index.php"</script>';
+        exit;
+    }
     
     // Evitando registros desnecessários
-    if(isset($resultado) && (!isset($resultado['error']) || !isset($resultado['detail']))) {
-
-        // Validando limite de requests por usuario
-        if($objConsulta->findByIpAndDate($dataConsulta, $ip)) {
-            echo '<script>alert("Você atingiu seu limite máximo de consultas no dia")</script>';
-            echo '<script>window.location.href = "index.php"</script>';
-        }else {
-            $objConsulta->cadastrarConsulta($cnpjValue, $dataConsulta, $ip);
-        }
-        
+    if(!isset($resultado['error']) && !isset($resultado['detail'])) {
+        $objConsulta->cadastrarConsulta($cnpjValue, $dataConsulta, $ip);
     }
 }
 

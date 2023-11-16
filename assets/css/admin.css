@@ -183,6 +183,11 @@ html, body {
     background-color: #fff;
 }
 
+.section_container .area_main_admin .area_excessao span {
+    display: block;
+    margin-top: 20px;
+}
+
 @media (max-width: 425px) {
     .section_login {
         padding: 40px 20px;

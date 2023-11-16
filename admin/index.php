@@ -7,7 +7,8 @@ use App\Consultas\Consulta;
 $consulta = new Consulta();
 $data = $consulta->listarConsultas();
 
-$listaDeConsultas = $data['info'];
+$listaDeConsultas = isset($data['info']) ? $data['info'] : [];
+
 $pages = $data['pages'];
 $currentPage = filter_input(INPUT_GET, 'p');
 
@@ -50,31 +51,37 @@ if(!isset($_SESSION['usuario_logado']) && empty($_SESSION['usuario_logado'])) {
                     </select>
                 </div>
             </div>
-            <div class="area_table">
-                <table>
-                    <thead>
-                        <th>ID</th>
-                        <th>CNPJ</th>
-                        <th>Data da consulta</th>
-                        <th>IP</th>
-                    </thead>
-                    <tbody>
-                        <?php foreach($listaDeConsultas as $item): ?>
-                        <tr>
-                            <td><?=$item['id'];?></td>
-                            <td><?=$item['cnpj'];?></td>
-                            <td><?=$item['data_consulta'];?></td>
-                            <td><?=$item['ip'];?></td>
-                        </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-                <div class="area_pagination">
-                    <?php for($i=0;$i<$pages;$i++): ?>
-                        <div class="item_pagination"><a class="<?=($i+1==$currentPage)?'active':''?>" href="index.php?p=<?=$i+1?>"><?=$i+1;?></a></div>
-                    <?php endfor ?>
+            <?php if(isset($listaDeConsultas) && !empty($listaDeConsultas)): ?>
+                <div class="area_table">
+                    <table>
+                        <thead>
+                            <th>ID</th>
+                            <th>CNPJ</th>
+                            <th>Data da consulta</th>
+                            <th>IP</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach($listaDeConsultas as $item): ?>
+                                <tr>
+                                    <td><?=$item['id'];?></td>
+                                    <td><?=$item['cnpj'];?></td>
+                                    <td><?=$item['data_consulta'];?></td>
+                                    <td><?=$item['ip'];?></td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                    <div class="area_pagination">
+                        <?php for($i=0;$i<$pages;$i++): ?>
+                            <div class="item_pagination"><a class="<?=($i+1==$currentPage)?'active':''?>" href="index.php?p=<?=$i+1?>"><?=$i+1;?></a></div>
+                        <?php endfor ?>
+                    </div>
                 </div>
-            </div>
+            <?php else: ?>
+                <div class="area_excessao">
+                    <span>Não há registros a serem exibidos...</span>
+                </div>
+            <?php endif ?>
         </main>
     </section>
     <script src="https://kit.fontawesome.com/e3dc242dae.js" crossorigin="anonymous"></script>

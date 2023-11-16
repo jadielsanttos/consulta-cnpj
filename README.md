@@ -1,5 +1,5 @@
 # Buscador de CNPJ
-<img src="assets/images/buscacnpj.png">
+<img src="assets/images/buscacnpj_new.png">
 
 ## Sobre o projeto
 Através da API da <a href="https://apiconsultacnpj.com.br/" target="_blank">Speedio</a>, é possível buscar dados de um *CNPJ* específico, como razão social, data de abertura, dentre outros. Com isso em mente, decidi criar um projeto para solucionar um problema que algumas pessoas podem ter, que é a dúvida sobre a procedência de um CNPJ, se ele é verídico, se foi criado recentemente, etc. Sabemos que existem muitos golpes utilizando CPF/CNPJ fake.
